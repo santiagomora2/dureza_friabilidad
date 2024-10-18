@@ -128,11 +128,11 @@ def main():
     # Mostrar las gráficas en las columnas
     with col1:
         st.write(f'Dureza: {maxdureza:.6f}')
-        st.bar_chart(mdd, x='Label', y='Valor')
+        st.bar_chart(mdd, x='Label', y='Valor', x_label = "")
         
     with col2:
         st.write(f'Friabilidad (Asociada al máximo de dureza): {maxdureza_fri:.6f}')
-        st.bar_chart(mdf, x='Label', y='Valor')
+        st.bar_chart(mdf, x='Label', y='Valor', x_label = "")
 
 #######################################################################################
 
@@ -161,11 +161,11 @@ def main():
     # Mostrar las gráficas en las columnas
     with col1:
         st.write(f'Dureza (Asociado al mínimo de friabilidad): {maxfri_dureza:.6f}')
-        st.bar_chart(mfd, x='Label', y='Valor')
+        st.bar_chart(mfd, x='Label', y='Valor', x_label = "")
         
     with col2:
         st.write(f'Friabilidad: {maxfri:.6f}')
-        st.bar_chart(mff, x='Label', y='Valor')
+        st.bar_chart(mff, x='Label', y='Valor', x_label = "")
 
         
 if __name__ == "__main__":

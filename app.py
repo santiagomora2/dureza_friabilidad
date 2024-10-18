@@ -56,11 +56,11 @@ def main():
     # Mostrar las gráficas en las columnas
     with col1:
         st.write(f'Dureza: {dureza:.6f}')
-        st.bar_chart(dfd, x='Label', y='Valor')
+        st.bar_chart(dfd, x='Label', y='Valor', x_label = "")
         
     with col2:
         st.write(f'Friabilidad: {friabilidad:.6f}')
-        st.bar_chart(dff, x='Label', y='Valor')
+        st.bar_chart(dff, x='Label', y='Valor', x_label = "")
         
 if __name__ == "__main__":
     main()
