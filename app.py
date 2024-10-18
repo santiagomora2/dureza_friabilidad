@@ -8,11 +8,11 @@ def pred_friabilidad(vel_d_ll, comp_p_h, fmax_ad, f_compvm, prof_ll, fcomp_srel,
     return 0.0035772706730503234 -4.24445670e-06 * vel_d_ll -1.25139943e-06 * comp_p_h -6.75850763e-05 * fmax_ad  + 2.40955915e-05 * f_compvm  - 1.49393146e-03 * prof_ll + 2.47676268e-03 * fcomp_srel -7.72629122e-04 * alt_alm_compr + -3.83294089e-04 * alt_alm_precom
 
 def main():
-    st.header('Predicción de Friabilidad y Dureza')
+    st.header('Exploración de Parámetros')
 
     st.markdown('''¡Bienvenid@! Ajusta los parámetros del lado izquierdo y mira como cambian los valores de dureza y friabilidad
     en tiempo real. Los valores ```Dureza Max``` y ```Friabilidad Min``` son los máximos y mínimos extraídos de la base de datos
-    proporcionada para el reto. Las predicciones están basadas dos modelos de regresión que se construyeron con base en
+    proporcionada para el reto. Las predicciones están basadas en dos modelos de regresión que se construyeron con base en
     los datos proporcionados.''')
 
     with st.sidebar:

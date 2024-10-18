@@ -66,7 +66,7 @@ def main():
 
     st.markdown('''¡Bienvenid@! Ajusta los rangos del espacio de búsqueda de cada parámetro del lado izquierdo y obtén los valores óptimos de dureza y friabilidad
     dentro de ese rango en tiempo real, así como los parámetros necesarios para llegar a ese óptimo. Los valores ```Dureza Max``` y ```Friabilidad Min``` son los máximos y mínimos extraídos de la base de datos
-    proporcionada para el reto. Las predicciones están basadas dos modelos de regresión que se construyeron con base en
+    proporcionada para el reto. Las predicciones están basadas en dos modelos de regresión que se construyeron con base en
     los datos proporcionados.''')
 
     with st.sidebar:
