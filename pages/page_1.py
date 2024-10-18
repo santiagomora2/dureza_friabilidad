@@ -1,8 +1,13 @@
+########################################
+# Librerías
 import streamlit as st
 from scipy.optimize import linprog
 import numpy as np
 import pandas as pd
+#########################################
+# Funciones
 
+# Función optimizadora
 def optimusprime(t1 = (0.0, 120.0), t2 = (3.5, 350), t3 = (3.5, 100.0), t4 = (0.0, 51.0), t5 = (3.5, 10.7), t6 = (3.5, 10.0),t7 =  (1.8, 3.5), t8 =  (2.8, 4.0)):
     #Los valores defaults de cada tupla/rango corresponden a los máximos encontrados en la base de datos
 
@@ -61,18 +66,25 @@ def optimusprime(t1 = (0.0, 120.0), t2 = (3.5, 350), t3 = (3.5, 100.0), t4 = (0.
     #      Esto se hace introduciendo los valores encontrados para la varaiable seleccionada
     #      en la linea de regresión de la variable no escogida
 
+###################################
+# Main
 def main():
+    # Título
     st.header('Optimización de Parámetros')
 
+    # Descripción
     st.markdown('''¡Bienvenid@! Ajusta los rangos del espacio de búsqueda de cada parámetro del lado izquierdo y obtén los valores óptimos de dureza y friabilidad
     dentro de ese rango en tiempo real, así como los parámetros necesarios para llegar a ese óptimo. Los valores ```Dureza Max``` y ```Friabilidad Min``` son los máximos y mínimos extraídos de la base de datos
     proporcionada para el reto. Las predicciones están basadas en dos modelos de regresión que se construyeron con base en
     los datos proporcionados.''')
 
+    # Sidebar
     with st.sidebar:
 
+        # Hipervínculo a página de exploración de parámetros
         st.page_link("app.py", label="Explorar Parámetros", icon="🏠")
 
+        # Sliders para los datos, regresan una tupla de datos (mínimo, máximo) de un rango
         vel_d_ll = st.slider("Velocidad de Llenado", 4.4, 120.0, (4.4, 120.0))
         comp_p_h = st.slider("Comprimidos por Hora", 0.0025, 400.0, (0.0025, 400.0))
         fmax_ad = st.slider("Fuerza máxima admisible de punzón", 0.0, 100.0, (0.0, 100.0))
@@ -84,21 +96,33 @@ def main():
 
     # Actualiza el valor en tiempo real según el objeto seleccionado
 
+    # Resultados
     st.header('Resultados', divider='gray')
 
+    # Obtener el diccionario en tiempo real usando los valores de los sliders
     md = optimusprime(vel_d_ll, comp_p_h, fmax_ad, f_compvm, prof_ll, fcomp_srel, alt_alm_compr, alt_alm_precom)
 
+    # Lista de los nombres
     names = ['Velocidad dispositivo de llenado', 'Comprimidos por hora', 'Fuerza máxima admisible de punzón', 'Fuerza de compresión principal: valor medio', 'Profundidad llenado', 'Fuerza de compresión principal: s-rel', 'Altura de alma compresión principal', 'Altura de alma precompresión']
 
+    # Del análisis de maximizar dureza:
+        # Extraer valor máximo de dureza
     maxdureza = md['d'][0]
+        # Extraer la lista de valores de cada prámetro para ese máximo de dureza
     maxdureza_valores = md['d'][1]
+        # Extraer la friabilidad asociada a ese valor de dureza
     maxdureza_fri = md['d'][2] if md['d'][2]>=0 else 0
 
+    # Del análisis de maximizar dureza:
+        # Extraer valor mínimo de friabilidad
     maxfri = md['f'][0] if md['f'][0] >=0 else 0
+        # Extraer la lista de valores de cada prámetro para ese mínimo de friabilidad
     maxfri_valores = md['f'][1]
+        # Extraer la dureza asociada a ese valor de friabilidad
     maxfri_dureza = md['f'][2]
 
 #######################################################################################
+# Mostrar valores de dureza
 
     st.subheader('Valores al maximizar DUREZA')
 
@@ -135,6 +159,7 @@ def main():
         st.bar_chart(mdf, x='Label', y='Valor', x_label = "")
 
 #######################################################################################
+# Mostrar valores de friabilidad
 
     st.subheader('Valores al minimizar FRIABILIDAD')
 
@@ -167,6 +192,6 @@ def main():
         st.write(f'Friabilidad: {maxfri:.6f}')
         st.bar_chart(mff, x='Label', y='Valor', x_label = "")
 
-        
+####################################
 if __name__ == "__main__":
     main()
