@@ -35,6 +35,8 @@ def main():
     dureza = pred_dureza(vel_d_ll, comp_p_h, fmax_ad, f_compvm, prof_ll, fcomp_srel, alt_alm_compr, alt_alm_precom)
     friabilidad = pred_friabilidad(vel_d_ll, comp_p_h, fmax_ad, f_compvm, prof_ll, fcomp_srel, alt_alm_compr, alt_alm_precom)
 
+    friabilidad = friabilidad if friabilidad >= 0 else 0
+
 
     # Crear un DataFrame con los valores de dureza y friabilidad
     datad = {
