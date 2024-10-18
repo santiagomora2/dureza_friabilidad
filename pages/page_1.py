@@ -136,7 +136,7 @@ def main():
 
 #######################################################################################
 
-    st.subheader('Valores al maximizar FRIABILIDAD')
+    st.subheader('Valores al minimizar FRIABILIDAD')
 
 
     # Crear un DataFrame con los valores de dureza y friabilidad para el máximo de friabilidad
