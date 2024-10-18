@@ -92,9 +92,9 @@ def main():
 
     maxdureza = md['d'][0]
     maxdureza_valores = md['d'][1]
-    maxdureza_fri = md['d'][2]
+    maxdureza_fri = md['d'][2] if md['d'][2]>=0 else 0
 
-    maxfri = md['f'][0]
+    maxfri = md['f'][0] if md['f'][0] >=0 else 0
     maxfri_valores = md['f'][1]
     maxfri_dureza = md['f'][2]
 
