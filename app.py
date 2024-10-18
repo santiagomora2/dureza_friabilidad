@@ -14,7 +14,11 @@ def main():
     en tiempo real. Los valores ```Dureza Max``` y ```Friabilidad Min``` son los máximos y mínimos extraídos de la base de datos
     proporcionada para el reto. Las predicciones están basadas dos modelos de regresión que se construyeron con base en
     los datos proporcionados.''')
+
     with st.sidebar:
+
+        st.page_link("pages/page_1.py", label="Optimizar Parámetros", icon="1️⃣")
+
         vel_d_ll = st.slider("Velocidad de Llenado", 4.4, 120.0, 93.0655)
         comp_p_h = st.slider("Comprimidos por Hora", 0.0025, 400.0, 238.775956)
         fmax_ad = st.slider("Fuerza máxima admisible de punzón", 0.0, 100.0, 98.284153)
@@ -26,7 +30,7 @@ def main():
 
     # Actualiza el valor en tiempo real según el objeto seleccionado
 
-    st.subheader('Resultados')
+    st.header('Resultados', divider='gray')
 
     dureza = pred_dureza(vel_d_ll, comp_p_h, fmax_ad, f_compvm, prof_ll, fcomp_srel, alt_alm_compr, alt_alm_precom)
     friabilidad = pred_friabilidad(vel_d_ll, comp_p_h, fmax_ad, f_compvm, prof_ll, fcomp_srel, alt_alm_compr, alt_alm_precom)
